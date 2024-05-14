@@ -87,6 +87,17 @@ Plugin* pluginInstance__BogaudioModules;
 Plugin* pluginInstance__MockbaModular;
 Plugin* pluginInstance__surgext;
 Plugin* pluginInstance__ValleyAudio;
+Plugin* pluginInstance__Befaco;
+
+
+// Befaco
+#define modelADSR modelBefacoADSR
+#define modelMixer modelBefacoMixer
+#define modelBurst modelBefacoBurst
+#include "Befaco/src/plugin.hpp"
+#undef modelADSR
+#undef modelMixer
+#undef modelBurst
 
 namespace rack {
 
@@ -185,6 +196,45 @@ struct StaticPluginLoader {
         }
     }
 };
+static void initStatic__Befaco()
+{
+    Plugin* const p = new Plugin;
+    pluginInstance__Befaco = p;
+
+    const StaticPluginLoader spl(p, "Befaco");
+    if (spl.ok())
+    {
+#define modelADSR modelBefacoADSR
+#define modelMixer modelBefacoMixer
+#define modelBurst modelBefacoBurst
+        p->addModel(modelEvenVCO);
+        p->addModel(modelRampage);
+        p->addModel(modelABC);
+        p->addModel(modelSpringReverb);
+        p->addModel(modelMixer);
+        p->addModel(modelSlewLimiter);
+        p->addModel(modelDualAtenuverter);
+        p->addModel(modelPercall);
+        p->addModel(modelHexmixVCA);
+        p->addModel(modelChoppingKinky);
+        p->addModel(modelKickall);
+        p->addModel(modelSamplingModulator);
+        p->addModel(modelMorphader);
+        p->addModel(modelADSR);
+        p->addModel(modelSTMix);
+        p->addModel(modelMuxlicer);
+        p->addModel(modelMex);
+        p->addModel(modelNoisePlethora);
+        p->addModel(modelChannelStrip);
+        p->addModel(modelPonyVCO);
+        p->addModel(modelMotionMTR);
+        p->addModel(modelBurst);
+        p->addModel(modelVoltio);
+#undef modelADSR
+#undef modelMixer
+#undef modelBurst
+    }
+}
 
 static void initStatic__Cardinal()
 {
@@ -645,6 +695,7 @@ void initStaticPlugins()
     initStatic__BogaudioModules();
     initStatic__MockbaModular();
     initStatic__surgext();
+    initStatic__Befaco();
     /*
     initStatic__ValleyAudio();
     */

@@ -211,8 +211,8 @@ jack: carla deps dgl plugins resources
 native: carla deps dgl plugins resources
 	$(MAKE) native -C src $(CARLA_EXTRA_ARGS)
 
-mini: carla deps dgl plugins resources
-	$(MAKE) mini -C src $(CARLA_EXTRA_ARGS)
+#mini: carla deps dgl plugins resources
+	#$(MAKE) mini -C src $(CARLA_EXTRA_ARGS)
 
 clap: carla deps dgl plugins resources
 	$(MAKE) clap -C src $(CARLA_EXTRA_ARGS)

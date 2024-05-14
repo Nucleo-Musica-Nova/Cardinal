@@ -297,7 +297,7 @@ LINK_FLAGS += -sLZ4=1
 LINK_FLAGS += -sSTACK_SIZE=5MB
 
 ifeq ($(CARDINAL_VARIANT),mini)
-LINK_FLAGS += --preload-file=../../bin/CardinalMini.lv2/resources@/resources
+#LINK_FLAGS += --preload-file=../../bin/CardinalMini.lv2/resources@/resources
 else
 LINK_FLAGS += --preload-file=../../bin/CardinalNative.lv2/resources@/resources
 LINK_FLAGS += --use-preload-cache
@@ -311,28 +311,7 @@ endif
 
 # find . -type l | grep -v svg | grep -v ttf | grep -v art | grep -v json | grep -v png | grep -v otf | sort
 SYMLINKED_DIRS_RESOURCES  = Fundamental/presets
-ifneq ($(CARDINAL_VARIANT),mini)
-SYMLINKED_DIRS_RESOURCES += BaconPlugs/res/midi/chopin
-SYMLINKED_DIRS_RESOURCES += BaconPlugs/res/midi/debussy
-SYMLINKED_DIRS_RESOURCES += BaconPlugs/res/midi/goldberg
-SYMLINKED_DIRS_RESOURCES += cf/playeroscs
-SYMLINKED_DIRS_RESOURCES += DHE-Modules/svg
-SYMLINKED_DIRS_RESOURCES += DrumKit/res/samples
-SYMLINKED_DIRS_RESOURCES += GrandeModular/presets
-SYMLINKED_DIRS_RESOURCES += LyraeModules/presets
-SYMLINKED_DIRS_RESOURCES += Meander/res
-SYMLINKED_DIRS_RESOURCES += MindMeldModular/presets
-SYMLINKED_DIRS_RESOURCES += MindMeldModular/res/ShapeMaster/CommunityPresets
-SYMLINKED_DIRS_RESOURCES += MindMeldModular/res/ShapeMaster/CommunityShapes
-SYMLINKED_DIRS_RESOURCES += MindMeldModular/res/ShapeMaster/MindMeldPresets
-SYMLINKED_DIRS_RESOURCES += MindMeldModular/res/ShapeMaster/MindMeldShapes
-SYMLINKED_DIRS_RESOURCES += Mog/res
-SYMLINKED_DIRS_RESOURCES += nonlinearcircuits/res
-SYMLINKED_DIRS_RESOURCES += Orbits/presets
-SYMLINKED_DIRS_RESOURCES += stoermelder-packone/presets
-SYMLINKED_DIRS_RESOURCES += surgext/build/surge-data/fx_presets
-SYMLINKED_DIRS_RESOURCES += surgext/build/surge-data/wavetables
-endif
+
 LINK_FLAGS += $(foreach d,$(SYMLINKED_DIRS_RESOURCES),--preload-file=../../bin/CardinalNative.lv2/resources/$(d)@/resources/$(d))
 
 else ifeq ($(HAIKU),true)
