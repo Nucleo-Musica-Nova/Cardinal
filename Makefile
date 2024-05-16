@@ -205,8 +205,8 @@ endif
 # --------------------------------------------------------------
 # extra rules, for quick testing
 
-jack: carla deps dgl plugins resources
-	$(MAKE) jack -C src $(CARLA_EXTRA_ARGS)
+# jack: carla deps dgl plugins resources
+# 	$(MAKE) jack -C src $(CARLA_EXTRA_ARGS)
 
 native: carla deps dgl plugins resources
 	$(MAKE) native -C src $(CARLA_EXTRA_ARGS)
@@ -214,20 +214,20 @@ native: carla deps dgl plugins resources
 #mini: carla deps dgl plugins resources
 	#$(MAKE) mini -C src $(CARLA_EXTRA_ARGS)
 
-clap: carla deps dgl plugins resources
-	$(MAKE) clap -C src $(CARLA_EXTRA_ARGS)
-
-lv2: carla deps dgl plugins resources
-	$(MAKE) lv2 -C src $(CARLA_EXTRA_ARGS)
-
-vst2: carla deps dgl plugins resources
-	$(MAKE) vst2 -C src $(CARLA_EXTRA_ARGS)
-
-vst2fx: carla deps dgl plugins resources
-	$(MAKE) vst2fx -C src $(CARLA_EXTRA_ARGS)
-
-vst3: carla deps dgl plugins resources
-	$(MAKE) vst3 -C src $(CARLA_EXTRA_ARGS)
+# clap: carla deps dgl plugins resources
+# 	$(MAKE) clap -C src $(CARLA_EXTRA_ARGS)
+#
+# lv2: carla deps dgl plugins resources
+# 	$(MAKE) lv2 -C src $(CARLA_EXTRA_ARGS)
+#
+# vst2: carla deps dgl plugins resources
+# 	$(MAKE) vst2 -C src $(CARLA_EXTRA_ARGS)
+#
+# vst2fx: carla deps dgl plugins resources
+# 	$(MAKE) vst2fx -C src $(CARLA_EXTRA_ARGS)
+#
+# vst3: carla deps dgl plugins resources
+# 	$(MAKE) vst3 -C src $(CARLA_EXTRA_ARGS)
 
 modgui:
 	$(MAKE) modgui -C src/CardinalMiniSep
@@ -235,17 +235,17 @@ modgui:
 # --------------------------------------------------------------
 # Packaging standalone for CI
 
-unzipfx: deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalJACK.zip CardinalNative.zip
-	cat deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalJACK.zip > CardinalJACK$(APP_EXT)
-	cat deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalNative.zip > CardinalNative$(APP_EXT)
-	chmod +x CardinalJACK$(APP_EXT) CardinalNative$(APP_EXT)
+# unzipfx: deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalJACK.zip CardinalNative.zip
+# 	cat deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalJACK.zip > CardinalJACK$(APP_EXT)
+# 	cat deps/unzipfx/unzipfx2cat$(APP_EXT) CardinalNative.zip > CardinalNative$(APP_EXT)
+# 	chmod +x CardinalJACK$(APP_EXT) CardinalNative$(APP_EXT)
 
-CardinalJACK.zip: bin/Cardinal$(APP_EXT) bin/CardinalFX.lv2/resources
-	mkdir -p build/unzipfx-jack
-	ln -sf ../../bin/Cardinal$(APP_EXT) build/unzipfx-jack/Cardinal$(APP_EXT)
-	ln -sf ../../bin/CardinalFX.lv2/resources build/unzipfx-jack/resources
-	cd build/unzipfx-jack && \
-		zip -r -9 ../../$@ Cardinal$(APP_EXT) resources
+# CardinalJACK.zip: bin/Cardinal$(APP_EXT) bin/CardinalFX.lv2/resources
+# 	mkdir -p build/unzipfx-jack
+# 	ln -sf ../../bin/Cardinal$(APP_EXT) build/unzipfx-jack/Cardinal$(APP_EXT)
+# 	ln -sf ../../bin/CardinalFX.lv2/resources build/unzipfx-jack/resources
+# 	cd build/unzipfx-jack && \
+# 		zip -r -9 ../../$@ Cardinal$(APP_EXT) resources
 
 CardinalNative.zip: bin/CardinalNative$(APP_EXT) bin/CardinalFX.lv2/resources
 	mkdir -p build/unzipfx-native
@@ -307,7 +307,7 @@ ifneq ($(VST3_BINARY_DIR),)
 endif
 
 	install -m 755 bin/Cardinal$(APP_EXT)       $(DESTDIR)$(PREFIX)/bin/
-	install -m 755 bin/CardinalMini$(APP_EXT)   $(DESTDIR)$(PREFIX)/bin/
+	#install -m 755 bin/CardinalMini$(APP_EXT)   $(DESTDIR)$(PREFIX)/bin/
 	install -m 755 bin/CardinalNative$(APP_EXT) $(DESTDIR)$(PREFIX)/bin/
 
 	cp -rL bin/Cardinal.lv2/resources/* $(DESTDIR)$(PREFIX)/share/cardinal/
