@@ -401,11 +401,11 @@ ifeq ($(HEADLESS),true)
 TARGET_SUFFIX = -headless
 endif
 
-TARGETS = plugins$(TARGET_SUFFIX).a plugins-mini$(TARGET_SUFFIX).a
+TARGETS = plugins$(TARGET_SUFFIX).a 
 
 all: $(TARGETS)
 ifneq ($(HEADLESS),true)
-	$(MAKE) HEADLESS=true plugins-mini-headless.a
+	#) HEADLESS=true 
 endif
 
 clean:

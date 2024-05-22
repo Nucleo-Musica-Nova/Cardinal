@@ -123,7 +123,7 @@ ifeq ($(MOD_BUILD),true)
 	$(MAKE) -C CardinalMiniSep lv2_sep
 else ifeq ($(WASM),true)
 	$(MAKE) -C CardinalNative
-	$(MAKE) -C CardinalMini
+	#$(MAKE) -C CardinalMini
 else
 	$(MAKE) -C Cardinal
 	$(MAKE) -C CardinalMini
